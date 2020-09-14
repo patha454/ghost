@@ -1,6 +1,22 @@
 ---
-Checks:          'clang-diagnostic-*,clang-analyzer-*,-*,bugprone-*,cert-*,clang-analyzer-*,google-*,portability-*,readability-*,misc-*'
-WarningsAsErrors: '*'
+Checks:          'clang-diagnostic-*,
+                  clang-analyzer-*,
+                  bugprone-*,
+                  cert-*,
+                  clang-analyzer-*,
+                  google-*,
+                  portability-*,
+                  readability-*,
+                  misc-*'
+WarningsAsErrors: 'clang-diagnostic-*,
+                   clang-analyzer-*,
+                   bugprone-*,
+                   cert-*,
+                   clang-analyzer-*,
+                   google-*,
+                   portability-*,
+                   readability-*,
+                   misc-*'
 HeaderFilterRegex: ''
 AnalyzeTemporaryDtors: false
 FormatStyle:     none
