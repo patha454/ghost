@@ -29,7 +29,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Setup clang-format
-        run: sudo apt-get install clang-format
+      - name: Cache Clang 10
+        id: cache-clang10
+        uses: actions/cache@v2.1.1
+        with:
+          path: ~/clang
+          key: ${{ runner.os }}-clang10
+      - name: GInstall Clang10
+        if: steps.cache-clang10.outputs.cache-hit != 'true'
+        run: | 
+          curl -L -o ~/clang.tar.xz https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
+          taf -xf ~/clang.tar.xf && mv ~/clang+llvm* clang
       - name: Stylecheck with clang-format
-        run:  find src include -name *.c -o -name *.h | xargs clang-format --style=file --Werror --dry-run
+        run:  find src include -name *.c -o -name *.h | xargs ~/clang/bin/clang-format --style=file --Werror --dry-run
