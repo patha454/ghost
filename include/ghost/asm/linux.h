@@ -30,7 +30,7 @@
  * @param count Number of bytes to write to the file.
  * @return      The number of bytes written to the file, or -1 on error.
  */
-extern ssize_t write(const unsigned int fd, const char* buf, const size_t count);
+extern ssize_t write(unsigned int fd, const char* buf, size_t count);
 
 /**
  * Linux system call `exit_group`.
