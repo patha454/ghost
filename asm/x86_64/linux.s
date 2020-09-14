@@ -29,7 +29,7 @@ write:
 exit_group:
     push %rbp               # Push base pointer to stack.
     mov %rsp, %rbp          # Set base pointer to old stack pointer.
-    mov $231, %rax          # Syscall #60 (exit_group.)
+    mov $231, %rax          # Syscall #231 (exit_group.)
     syscall                 # exit_code should already be on %rdi.
     mov %rbp, %rsp          # Should not return from syscall. Just in case...
     pop %rbp
