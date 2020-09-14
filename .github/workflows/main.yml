@@ -38,7 +38,7 @@ jobs:
       - name: Install Clang10
         if: steps.cache-clang10.outputs.cache-hit != 'true'
         run: | 
-          curl -L -o ~/clang.tar.xz https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
-          tar -xf ~/clang.tar.xf && mv ~/clang+llvm* clang
+          curl -L --output ~/clang.tar.xz https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
+          tar -xf ~/clang.tar.xz && mv ~/clang+llvm* clang
       - name: Stylecheck with clang-format
         run:  find src include -name *.c -o -name *.h | xargs ~/clang/bin/clang-format --style=file --Werror --dry-run
