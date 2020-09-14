@@ -1,7 +1,7 @@
 /**
- * @file include/ghost_types.h.
+ * @file include/ghost/types.h.
  * 
- * `include/ghost_types.h` defines types used by Ghost but not exposed by the
+ * `include/ghost/types.h` defines types used by Ghost but not exposed by the
  * freestanding C headers, such as `ssize_t`.
  *
  * @author H Paterson, 2020.

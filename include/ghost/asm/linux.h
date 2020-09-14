@@ -1,7 +1,7 @@
 /**
- * @file `include/asm/linux.h`.
+ * @file `include/ghost/asm/linux.h`.
  * 
- * `include/asm/linux.h` defines relevant system calls for the Linux
+ * `include/ghost/asm/linux.h` defines relevant system calls for the Linux
  * operating system.
  *
  * The system calls are implimented in assembly so we can avoid depending on
@@ -20,7 +20,7 @@
 #define ASM_LINUX_H_
 
 #include <stddef.h>
-#include "ghost_types.h"
+#include "ghost/types.h"
 
 /**
  * Linux system call `write`.

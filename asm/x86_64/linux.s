@@ -1,7 +1,7 @@
 /**
- * @file asm/x86_64-linux.s.
+ * @file asm/x86_64/linux.s
  *
- * `asm/x86_64-linux.s` defines relevant system calls for an x86-64 Linux host.
+ * `asm/x86_64/linux.s` defines relevant system calls for an x86-64 Linux host.
  *
  * @see `include/asm/linux.h`
  *
