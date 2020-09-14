@@ -19,8 +19,8 @@
 #ifndef ASM_LINUX_H_
 #define ASM_LINUX_H_
 
-#include <stddef.h>
 #include "ghost/types.h"
+#include <stddef.h>
 
 /**
  * Linux system call `write`.
