@@ -1,7 +1,7 @@
 IF ("${CMAKE_SYSTEM_PROCESSOR}" MATCHES "x86_64")
     enable_language(ASM)
     IF (NOT CMAKE_ASM_COMPILER_WORKS)
-        MESSAGE(FATAL_ERROR "asm: ${CMAKE_SYATEM_PROCESSOR} AT&T synatax Assembler unavailable.")
+        MESSAGE(FATAL_ERROR "asm: ${CMAKE_SYSTEM_PROCESSOR} AT&T synatax Assembler unavailable.")
     ENDIF (NOT CMAKE_ASM_COMPILER_WORKS)
     ADD_SUBDIRECTORY(x86_64)
 ELSE()
