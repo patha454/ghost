@@ -23,4 +23,4 @@ jobs:
       - name: Configure build
         run: cmake -B config -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
       - name: Lint with clang-tidy
-        run: find src include -name *.c -o -name *.h | xargs -i clang-tidy {} -p config --Iinclude
+        run: find src include -name *.c -o -name *.h | xargs -i clang-tidy {} -p config -- -Iinclude
