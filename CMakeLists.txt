@@ -12,6 +12,41 @@ SET_TARGET_PROPERTIES(ghost_app PROPERTIES C_STANDARD 90)
 
 TARGET_INCLUDE_DIRECTORIES(ghost_app PRIVATE include)
 
+# Enable full compiler warnings.
+IF (CMAKE_COMPILER_ID STREQUAL "MSVC")
+    # Disable C11 deprecation warnings.
+    ADD_DEFINITIONS(-D_CRT_SECURE_NO_WARNINGS)
+    # Compile as C89 with warnings as errors.
+    TARGET_COMPILE_OPTIONS(ghost_app PRIVATE
+        "SHELL:-Za"
+        "SHELL:-W3"
+        "SHELL:-WX"
+    )
+ELSEIF (CMAKE_C_COMPILER_ID STREQUAL "GNU")
+    # Compile as C90 with warnings as errors.
+    TARGET_COMPILE_OPTIONS(ghost_app PRIVATE 
+        "SHELL:-W" 
+        "SHELL:-Wall"
+        "SHELL:-Wpedantic"
+        "SHELL:-Wextra"
+        "SHELL:-Werror"
+        "SHELL:-std=c90"
+)
+ELSEIF (CMAKE_C_COMPILER_ID STREQUAL "Clang")
+    TARGET_COMPILE_OPTIONS(ghost_app PRIVATE 
+        "SHELL:-W" 
+        "SHELL:-Wall"
+        "SHELL:-Wpedantic"
+        "SHELL:-Wextra"
+        "SHELL:-Werror"
+        "SHELL:-std=c90"
+    )
+ELSE()
+    MESSAGE(WARNING "Ghost: Unknown C compiler. Strict errors and warnings not enabled.")
+ENDIF()
+
+
+
 target_link_options(ghost_app PRIVATE
     "LINKER:-e,__start"
     "-nostdlib"
