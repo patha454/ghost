@@ -27,3 +27,12 @@
  * @return      The number of bytes actually written, or -1 on error.
  */
 ssize_t write(int fd, const void* buf, size_t count);
+
+/**
+ * `exit_group` exits all threads in the current group.
+ *
+ * This should include the current process, and all child threads.
+ *
+ * @param status_code    The exit code to return to the system.
+ */
+void exit_group(int status_code);
