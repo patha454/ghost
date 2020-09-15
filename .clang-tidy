@@ -16,7 +16,8 @@ WarningsAsErrors: 'clang-diagnostic-*,
                    google-*,
                    portability-*,
                    readability-*,
-                   misc-*'
+                   misc-*,
+                   -clang-diagnostic-#pragma-messages'
 HeaderFilterRegex: ''
 AnalyzeTemporaryDtors: false
 FormatStyle:     none
