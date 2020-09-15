@@ -12,6 +12,9 @@
  * @copyright BSL-1.0.
  */
 
+#ifndef GHOST_SYSTEM_H_
+#define GHOST_SYSTEM_H_
+
 #include "ghost/types.h"
 #include <stddef.h>
 
@@ -36,3 +39,5 @@ ssize_t write(int fd, const void* buf, size_t count);
  * @param status_code    The exit code to return to the system.
  */
 void exit_group(int status_code);
+
+#endif

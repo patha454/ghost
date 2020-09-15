@@ -9,9 +9,14 @@
  * @copyright BSL-1.0.
  */
 
+#ifndef GHOST_STRING_H_
+#define GHOST_STRING_H_
+
 /**
  * Writes a string, upto but not including a null character.
  *
  * @return The number of characters written, or -1 on error.
  */
 int puts(const char* str);
+
+#endif
