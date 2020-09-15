@@ -1,6 +1,6 @@
 #include "ghost/string.h"
+#include "ghost/system.h"
 
-#define TEST_WRITE_LEN 11
 #define TEST_EXIT_CODE 69
 
 void __start(void)
