@@ -29,7 +29,7 @@
  * @param count Number of bytes to write.
  * @return      The number of bytes actually written, or -1 on error.
  */
-ssize_t write(int fd, const void* buf, size_t count);
+ssize_t write(unsigned int fd, const void* buf, size_t count);
 
 /**
  * `exit_group` exits all threads in the current group.
