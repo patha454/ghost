@@ -1,7 +1,7 @@
 /**
- * @file `include/ghost/asm/linux.h`.
+ * @file `include/ghost/system/linux.h`.
  * 
- * `include/ghost/asm/linux.h` defines relevant system calls for the Linux
+ * `include/ghost/system/linux.h` defines relevant system calls for the Linux
  * operating system.
  *
  * The system calls are implimented in assembly so we can avoid depending on
@@ -30,7 +30,7 @@
  * @param count Number of bytes to write to the file.
  * @return      The number of bytes written to the file, or -1 on error.
  */
-extern ssize_t write(unsigned int fd, const char* buf, size_t count);
+extern ssize_t sys_write(unsigned int fd, const char* buf, size_t count);
 
 /**
  * Linux system call `exit_group`.
@@ -41,6 +41,6 @@ extern ssize_t write(unsigned int fd, const char* buf, size_t count);
  * @param error_code Error code (exit status) to return to the system.
  * @return Should never return.
  */
-extern int exit_group(int error_code);
+extern int sys_exit_group(int error_code);
 
 #endif

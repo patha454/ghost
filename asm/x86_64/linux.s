@@ -11,9 +11,9 @@
 
 .text
 
-.global write
+.global sys_write
 
-write:
+sys_write:
     push %rbp               # Push base pointer to stack.
     mov %rsp, %rbp          # Set old stack pointer as base pointer.
     mov $1, %rax            # Syscall #1 (write.)
@@ -24,9 +24,9 @@ write:
     ret                     # Return value should already be in %rax after
                             # syscall.       
 
-.global exit_group
+.global sys_exit_group
 
-exit_group:
+sys_exit_group:
     push %rbp               # Push base pointer to stack.
     mov %rsp, %rbp          # Set base pointer to old stack pointer.
     mov $231, %rax          # Syscall #231 (exit_group.)
