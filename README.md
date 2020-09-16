@@ -11,6 +11,10 @@ $ cmake -B build .
 $ cmake --build build
 ```
 
-# Supported platforms.
+## Supported platforms.
 
 Ghost currently supports only x86-64 Linux targets.
+
+## Known bugs.
+
+Segfaults when compiled with Clang.
