@@ -16,8 +16,8 @@
  * @copyright BSL-1.0.
  */
 
-#ifndef ASM_LINUX_H_
-#define ASM_LINUX_H_
+#ifndef GHOST_ASM_LINUX_H_
+#define GHOST_ASM_LINUX_H_
 
 #include "ghost/types.h"
 #include <stddef.h>
