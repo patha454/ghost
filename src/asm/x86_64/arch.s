@@ -14,6 +14,17 @@
 
 .global get_stack_pointer
 
+/**
+ * Get the stack pointer of the program *before* `get_stack_pointer` was
+ * called.
+ *
+ * `get_stack_pointer` is intended for getting the stack frame provided to the
+ * loader by the syster - often containing information passed from the kernel.
+ *
+ * @note In the AMD64 ABI calling `get_stack_pointer` would change the stack
+ * pointer into the function's own frame, so we return the base pointer, which
+ * is the caller's stack pointer.
+ */
 get_stack_pointer:
-    mov %rsp, %rax      # Move the stack pointer to rax.
+    mov %rbp, %rax      # Move the stack pointer to rax.
     ret                 # Return the stack pointeron rax.
