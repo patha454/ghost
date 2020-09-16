@@ -29,7 +29,7 @@
  * @param count Number of bytes to write.
  * @return      The number of bytes actually written, or -1 on error.
  */
-ssize_t write(unsigned int fd, const void* buf, size_t count);
+extern ssize_t write(unsigned int fd, const void* buf, size_t count);
 
 /**
  * `exit_group` exits all threads in the current group.
@@ -38,6 +38,6 @@ ssize_t write(unsigned int fd, const void* buf, size_t count);
  *
  * @param status_code    The exit code to return to the system.
  */
-void exit_group(int status_code);
+extern void exit_group(int status_code);
 
 #endif
