@@ -17,7 +17,7 @@ int print_elf_auxv_t(Elf64_auxv_t auxv)
 {
     switch (auxv.a_type) {
     case AT_NULL:
-        printf("AT_NULL: 0x%x [%p]\n", auxv.a_un.a_val, &auxv);
+        printf("AT_NULL: 0x%lx [%p]\n", auxv.a_un.a_val, &auxv);
         return 0;
         break;
     case AT_IGNORE:
@@ -72,19 +72,19 @@ int print_elf_auxv_t(Elf64_auxv_t auxv)
         printf("AT_UCACHEBSIZE: ");
         break;
     default:
-        printf("Unknown AUXV type %d: ", auxv.a_type);
+        printf("Unknown AUXV type %lu: ", auxv.a_type);
     }
-    printf("0x%x [%p]\n", auxv.a_un.a_val, &auxv);
+    printf("0x%lx [%p]\n", auxv.a_un.a_val, &auxv);
     return 1;
 }
 
 void print_elf_auxvs(intptr_t auxv)
 {
     int i = 0;
-    intptr_t auxv_itr = (intptr_t)auxv;
+    intptr_t auxv_itr = auxv;
     Elf64_auxv_t* auxv_e = NULL;
     printf("ELF Auxiliary Vectors:\n");
-    printf("argc: %d [0x%p]\n", *(size_t*)auxv_itr, (size_t*)auxv_itr);
+    printf("argc: %zu [0x%p]\n", *(size_t*)auxv_itr, (size_t*)auxv_itr);
     auxv_itr += sizeof(size_t);
     while (*(char**)auxv_itr) {
         printf("argv[%d]: %s [0x%p]\n", i++, *(char**)auxv_itr, (char**)auxv_itr);
@@ -92,8 +92,7 @@ void print_elf_auxvs(intptr_t auxv)
     }
     /* skip NULL seperator. */
     auxv_itr += sizeof(char**);
-    printf("envc: %d [0x%p]\n", *(size_t*)auxv_itr, (size_t*)auxv_itr);
-    auxv_itr += sizeof(size_t);
+    i = 0;
     while (*(char**)auxv_itr) {
         printf("envv[%d]: %s [0x%p]\n", i++, *(char**)auxv_itr, (char**)auxv_itr);
         auxv_itr += sizeof(char**);
