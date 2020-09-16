@@ -28,3 +28,18 @@ int puts(const char* const string)
     }
     return 1;
 }
+
+/**
+ * Writes a single chracter to the stdout.
+ *
+ * @warning This function is provided as support for a third party printf
+ * implimentation. It may be removed along with the library at a later date,
+ * and should not be used directly by Ghost. It does not appear in header files
+ * for this reason.
+ *
+ * @param ch    Character to write to the stdout.
+ */
+void _putchar(char ch)
+{
+    write(STDOUT, &ch, 1);
+}

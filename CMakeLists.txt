@@ -6,9 +6,21 @@ PROJECT(ghost_project C ASM)
 MESSAGE(STATUS "Target CPU: ${CMAKE_SYSTEM_PROCESSOR}")
 MESSAGE(STATUS "Target OS: ${CMAKE_SYSTEM_NAME}")
 
+ADD_LIBRARY(printf_lib STATIC
+    printf/printf.c
+)
+
+TARGET_COMPILE_OPTIONS(printf_lib PRIVATE
+    "SHELL:-fno-stack-protector"
+)
+
+TARGET_INCLUDE_DIRECTORIES(printf_lib INTERFACE printf)
+
 ADD_EXECUTABLE(ghost_app)
 SET_TARGET_PROPERTIES(ghost_app PROPERTIES OUTPUT_NAME "ghost")
 SET_TARGET_PROPERTIES(ghost_app PROPERTIES C_STANDARD 90)
+
+TARGET_LINK_LIBRARIES(ghost_app PRIVATE printf_lib)
 
 TARGET_INCLUDE_DIRECTORIES(ghost_app PRIVATE include)
 
@@ -39,6 +51,7 @@ ELSEIF (CMAKE_C_COMPILER_ID STREQUAL "Clang")
         "SHELL:-Wpedantic"
         "SHELL:-Wextra"
         "SHELL:-Werror"
+        "SHELL:-Wno-unused-command-line-argument"
         "SHELL:-std=c90"
     )
 ELSE()
