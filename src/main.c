@@ -101,13 +101,6 @@ void print_elf_auxvs(intptr_t auxv)
     while (print_elf_auxv_t(*auxv_e)) {
         auxv_e += 1;
     }
-    /*print_elf_auxv_t(*auxv_e); 
-    auxv_itr += sizeof(char**);
-    auxv_e = *(Elf64_auxv_t*) auxv_itr;
-    while (print_elf_auxv_t(auxv_e))
-    {
-        auxv_e = *(&auxv_e + 1);
-    } */
 }
 
 void _main(intptr_t sp)
