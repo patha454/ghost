@@ -6,7 +6,7 @@ PROJECT(ghost_project C ASM)
 MESSAGE(STATUS "Target CPU: ${CMAKE_SYSTEM_PROCESSOR}")
 MESSAGE(STATUS "Target OS: ${CMAKE_SYSTEM_NAME}")
 
-IF(NOT EXISTS "printf")
+IF(NOT EXISTS "${CMAKE_SOURCE_DIR}/printf")
     MESSAGE(FATAL_ERROR "Printf submodule not found. Try `git submodule update --init`.")
 ELSE()
     MESSAGE(STATUS "Printf submodule found")
@@ -14,10 +14,6 @@ ENDIF()
 
 ADD_LIBRARY(printf_lib STATIC
     printf/printf.c
-)
-
-TARGET_COMPILE_OPTIONS(printf_lib PRIVATE
-    "SHELL:-fno-stack-protector"
 )
 
 TARGET_INCLUDE_DIRECTORIES(printf_lib INTERFACE printf)
