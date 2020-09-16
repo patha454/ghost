@@ -6,6 +6,12 @@ PROJECT(ghost_project C ASM)
 MESSAGE(STATUS "Target CPU: ${CMAKE_SYSTEM_PROCESSOR}")
 MESSAGE(STATUS "Target OS: ${CMAKE_SYSTEM_NAME}")
 
+IF(NOT EXISTS "printf")
+    MESSAGE(FATAL_ERROR "Printf submodule not found. Try `git submodule update --init`.")
+ELSE()
+    MESSAGE(STATUS "Printf submodule found")
+ENDIF()
+
 ADD_LIBRARY(printf_lib STATIC
     printf/printf.c
 )
