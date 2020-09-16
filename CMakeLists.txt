@@ -68,4 +68,3 @@ target_link_options(ghost_app PRIVATE
 )
 
 ADD_SUBDIRECTORY(src)
-ADD_SUBDIRECTORY(asm)
