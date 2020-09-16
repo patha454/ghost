@@ -7,6 +7,11 @@
  * @copyright BSL-1.0.
  */
 
+#ifndef GHOST_ASM_ARCH_H_
+#define GHOST_ASM_ARCH_H_
+
+#include <stdint.h>
+
 /**
  * Get the stack pointer of the program *before* `get_stack_pointer` was
  * called.
@@ -19,3 +24,5 @@
  * the base pointer - which is the caller's stack pointer.
  */
 extern intptr_t get_stack_pointer();
+
+#endif
