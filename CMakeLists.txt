@@ -55,6 +55,10 @@ ELSEIF (CMAKE_C_COMPILER_ID STREQUAL "Clang")
         "SHELL:-Werror"
         "SHELL:-Wno-unused-command-line-argument"
         "SHELL:-std=c90"
+        "SHELL:-mstackrealign"
+    )
+    TARGET_COMPILE_OPTIONS(printf_lib PRIVATE
+        "SHELL:-mstackrealign"
     )
 ELSE()
     MESSAGE(WARNING "Ghost: Unknown C compiler. Strict errors and warnings not enabled.")
