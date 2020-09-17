@@ -18,9 +18,14 @@ ADD_LIBRARY(printf_lib STATIC
 
 IF (CMAKE_C_COMPILER_ID STREQUAL "GNU")
     TARGET_COMPILE_OPTIONS(printf_lib PRIVATE
-    # GCC includes stack smashing protection by default,
-    # which causes seg faults. It assumes %fs points to
-    # usable memory.
+    # Sack protection causes seg faults.
+    # It assumes %fs points to usable memory.
+    "SHELL:-fno-stack-protector"
+    )
+ELSEIF (CMAKE_C_COMPILER_ID STREQUAL "Clang")
+TARGET_COMPILE_OPTIONS(printf_lib PRIVATE
+    # Sack protection causes seg faults.
+    # It assumes %fs points to usable memory.
     "SHELL:-fno-stack-protector"
     )
 ENDIF()
@@ -54,9 +59,8 @@ ELSEIF (CMAKE_C_COMPILER_ID STREQUAL "GNU")
         "SHELL:-Wextra"
         "SHELL:-Werror"
         "SHELL:-std=c90"
-        # GDB includes stack smashing protection by default,
-        # which causes seg faults. It assumes %fs points to
-        # usable memory.
+        # Sack protection causes seg faults.
+        # It assumes %fs points to usable memory.
         "SHELL:-fno-stack-protector"
 )
 ELSEIF (CMAKE_C_COMPILER_ID STREQUAL "Clang")
@@ -69,6 +73,9 @@ ELSEIF (CMAKE_C_COMPILER_ID STREQUAL "Clang")
         "SHELL:-Wno-unused-command-line-argument"
         "SHELL:-std=c90"
         "SHELL:-mstackrealign"
+        # Sack protection causes seg faults.
+        # It assumes %fs points to usable memory.
+        "SHELL:-fno-stack-protector"
     )
     TARGET_COMPILE_OPTIONS(printf_lib PRIVATE
         "SHELL:-mstackrealign"
