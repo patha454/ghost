@@ -16,6 +16,15 @@ ADD_LIBRARY(printf_lib STATIC
     printf/printf.c
 )
 
+IF (CMAKE_C_COMPILER_ID STREQUAL "GNU")
+    TARGET_COMPILE_OPTIONS(printf_lib PRIVATE
+    # GCC includes stack smashing protection by default,
+    # which causes seg faults. It assumes %fs points to
+    # usable memory.
+    "SHELL:-fno-stack-protector"
+    )
+ENDIF()
+
 TARGET_INCLUDE_DIRECTORIES(printf_lib INTERFACE printf)
 
 ADD_EXECUTABLE(ghost_app)
@@ -27,7 +36,7 @@ TARGET_LINK_LIBRARIES(ghost_app PRIVATE printf_lib)
 TARGET_INCLUDE_DIRECTORIES(ghost_app PRIVATE include)
 
 # Enable full compiler warnings.
-IF (CMAKE_COMPILER_ID STREQUAL "MSVC")
+IF (CMAKE_C_COMPILER_ID STREQUAL "MSVC")
     # Disable C11 deprecation warnings.
     ADD_DEFINITIONS(-D_CRT_SECURE_NO_WARNINGS)
     # Compile as C89 with warnings as errors.
@@ -45,6 +54,10 @@ ELSEIF (CMAKE_C_COMPILER_ID STREQUAL "GNU")
         "SHELL:-Wextra"
         "SHELL:-Werror"
         "SHELL:-std=c90"
+        # GDB includes stack smashing protection by default,
+        # which causes seg faults. It assumes %fs points to
+        # usable memory.
+        "SHELL:-fno-stack-protector"
 )
 ELSEIF (CMAKE_C_COMPILER_ID STREQUAL "Clang")
     TARGET_COMPILE_OPTIONS(ghost_app PRIVATE 
