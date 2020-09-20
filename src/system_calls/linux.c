@@ -1,7 +1,7 @@
 /**
- * @file src/system_calls/linux.h
+ * @file src/system_calls/linux.c
  * 
- * `src/system_calls/linux.h` impliments a generic interface to system functions,
+ * `src/system_calls/linux.c` impliments aninterface to Linux system functions,
  * such as file I/O, and memory mapping.
  *
  * @see `include/ghost/system.h`

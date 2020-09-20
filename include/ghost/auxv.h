@@ -19,7 +19,7 @@
 #define GHOST_AUXV_H_
 
 #include "ghost/types.h"
-#include <stdint.h>
+#include <stddef.h>
 
 /**
  *  * The auxiliary vector contains information passed from the kernel to the
@@ -88,5 +88,10 @@ struct auxiliary_vector {
     /** Frequency at which time incriments. */
     size_t clock_tick;
 };
+
+void print_auxiliary_vector(const struct auxiliary_vector* auxv);
+
+void parse_auxiliary_vector(const struct auxiliary_vector* auxv,
+    intptr_t auxv_base);
 
 #endif
