@@ -30,8 +30,7 @@
  * not every field in `struct auxiliary_vector` is populated, and test for NULL
  * or 0 values.
  */
-struct auxiliary_vector
-{
+struct auxiliary_vector {
     /** Number of command line arguments. */
     size_t argc;
 
@@ -52,7 +51,7 @@ struct auxiliary_vector
 
     /** Size of a single target program header. */
     size_t program_header_size;
-    
+
     /** Number of target program headers. */
     size_t program_header_num;
 
@@ -88,7 +87,6 @@ struct auxiliary_vector
 
     /** Frequency at which time incriments. */
     size_t clock_tick;
-
-}
+};
 
 #endif
