@@ -32,6 +32,18 @@
  */
 struct auxiliary_vector
 {
+    /** Number of command line arguments. */
+    size_t argc;
+
+    /** Location of command line argument pointers. */
+    intptr_t argv;
+
+    /** Number of environment variables. */
+    size_t envc;
+
+    /** Location of environment variable pointers. */
+    intptr_t envv;
+
     /** File descriptor of the target program. */
     size_t exec_fd;
 
