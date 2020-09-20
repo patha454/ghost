@@ -118,12 +118,3 @@ void __start(void)
     sp += sizeof(intptr_t);
     _main(sp);
 }
-
-/**
- * Stub for the compiler to call when stack smashing protection checks fail.
- */
-void __stack_chk_fail()
-{
-    printf("Ghost: Error: Stack check failed.\n");
-    exit_group(EXIT_STACK_CHECK_FAILED);
-}
