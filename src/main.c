@@ -1,5 +1,5 @@
 #include "ghost/string.h"
-#include "ghost/system.h"
+#include "ghost/system_calls.h"
 #pragma message "Using external libelf-dev headers."
 #include "elf.h"
 #include "ghost/asm/arch.h"

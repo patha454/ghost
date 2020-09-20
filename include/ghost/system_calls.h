@@ -1,7 +1,7 @@
 /**
- * @file include/ghost/system.h
+ * @file include/ghost/system_calls.h
  * 
- * `include/ghost/system.h` defines a generic interface to system functions,
+ * `include/ghost/system_calls.h` defines a generic interface to system functions,
  * such as file I/O, and memory mapping.
  *
  * Most functions in `system.h` are based on Linux system calls, but should

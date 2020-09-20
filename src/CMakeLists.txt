@@ -3,5 +3,5 @@ TARGET_SOURCES(ghost_app PRIVATE
     string.c
 )
 
-ADD_SUBDIRECTORY(system)
+ADD_SUBDIRECTORY(system_calls)
 ADD_SUBDIRECTORY(asm)

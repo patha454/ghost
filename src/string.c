@@ -9,7 +9,7 @@
  * @copyright BSL-1.0.
  */
 
-#include "ghost/system.h"
+#include "ghost/system_calls.h"
 
 /**
  * Writes a string to the stdout, upto but not including a null character.
