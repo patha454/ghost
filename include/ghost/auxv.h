@@ -35,13 +35,13 @@ struct auxiliary_vector {
     size_t argc;
 
     /** Location of command line argument pointers. */
-    intptr_t argv;
+    char** argv;
 
     /** Number of environment variables. */
     size_t envc;
 
     /** Location of environment variable pointers. */
-    intptr_t envv;
+    char** envv;
 
     /** File descriptor of the target program. */
     size_t exec_fd;
@@ -83,7 +83,7 @@ struct auxiliary_vector {
     size_t egid;
 
     /** String identifying CPU. */
-    intptr_t platform;
+    char* platform;
 
     /** Frequency at which time incriments. */
     size_t clock_tick;
@@ -91,7 +91,7 @@ struct auxiliary_vector {
 
 void print_auxiliary_vector(const struct auxiliary_vector* auxv);
 
-void parse_auxiliary_vector(const struct auxiliary_vector* auxv,
+void parse_auxiliary_vector(struct auxiliary_vector* auxv,
     intptr_t auxv_base);
 
 #endif
