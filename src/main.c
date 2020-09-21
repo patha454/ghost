@@ -4,8 +4,8 @@
 #include "elf.h"
 #include "ghost/asm/arch.h"
 #pragma message "Using external printf library"
-#include "printf.h"
 #include "ghost/auxv.h"
+#include "printf.h"
 
 #define EXIT_SUCCESS 0
 
