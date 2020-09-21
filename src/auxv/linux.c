@@ -101,23 +101,23 @@ void print_auxiliary_vector(const struct auxiliary_vector* const auxv)
     printf("--- Auxiliary Vector ---\n");
     printf("argc: %zu\n", auxv->argc);
     for (i = 0; i < auxv->argc; i++) {
-        printf("argv[%d]: %s\n", i, auxv->argv[i]);
+        printf("argv[%zu]: %s\n", i, auxv->argv[i]);
     }
     printf("argc: %zu\n", auxv->envc);
     for (i = 0; i < auxv->envc; i++) {
-        printf("envv[%d]: %s\n", i, auxv->envv[i]);
+        printf("envv[%zu]: %s\n", i, auxv->envv[i]);
     }
-    printf("Target headers: 0x%x\n", auxv->program_headers);
-    printf("Target header size: 0d%d\n", auxv->program_header_size);
-    printf("Target header count: 0d%d\n", auxv->program_header_num);
-    printf("Host page size: %d\n", auxv->page_size);
-    printf("Interpreter base: 0x%x\n", auxv->ghost_base);
-    printf("Flags: 0x%x\n", auxv->flags);
-    printf("Target entry point: 0x%x\n", auxv->entry_point);
-    printf("UID: %d\n", auxv->uid);
-    printf("EUID: %d\n", auxv->euid);
-    printf("GID: %d\n", auxv->gid);
-    printf("EGID: %d\n", auxv->egid);
+    printf("Target headers: 0x%lx\n", auxv->program_headers);
+    printf("Target header size: 0d%zu\n", auxv->program_header_size);
+    printf("Target header count: 0d%zu\n", auxv->program_header_num);
+    printf("Host page size: %zu\n", auxv->page_size);
+    printf("Interpreter base: 0x%lx\n", auxv->ghost_base);
+    printf("Flags: 0x%zx\n", auxv->flags);
+    printf("Target entry point: 0x%lx\n", auxv->entry_point);
+    printf("UID: %zu\n", auxv->uid);
+    printf("EUID: %zu\n", auxv->euid);
+    printf("GID: %zu\n", auxv->gid);
+    printf("EGID: %zu\n", auxv->egid);
     printf("Platform: %s\n", auxv->platform);
-    printf("Clock tick: %d\n", auxv->clock_tick);
+    printf("Clock tick: %zu\n", auxv->clock_tick);
 }
