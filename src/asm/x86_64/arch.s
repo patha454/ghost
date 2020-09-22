@@ -12,6 +12,8 @@
 
 .text
 
+.func get_stack_pointer
+.hidden get_stack_pointer
 .global get_stack_pointer
 
 /**
@@ -28,3 +30,5 @@
 get_stack_pointer:
     mov %rbp, %rax      # Move the stack pointer to rax.
     ret                 # Return the stack pointeron rax.
+
+.endfunc

@@ -17,6 +17,6 @@
  *
  * @return The number of characters written, or -1 on error.
  */
-extern int puts(const char* str);
+int puts(const char* str);
 
 #endif

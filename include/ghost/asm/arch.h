@@ -23,6 +23,6 @@
  * pointer into the function's own frame, so these implementations will return
  * the base pointer - which is the caller's stack pointer.
  */
-extern intptr_t get_stack_pointer();
+intptr_t get_stack_pointer();
 
 #endif

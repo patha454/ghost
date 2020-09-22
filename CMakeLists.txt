@@ -21,6 +21,7 @@ IF (CMAKE_C_COMPILER_ID STREQUAL "GNU")
     # Sack protection causes seg faults.
     # It assumes %fs points to usable memory.
     "SHELL:-fno-stack-protector"
+    "SHELL:-fvisibility=hidden"
     )
 ELSEIF (CMAKE_C_COMPILER_ID STREQUAL "Clang")
 TARGET_COMPILE_OPTIONS(printf_lib PRIVATE
@@ -32,7 +33,7 @@ ENDIF()
 
 TARGET_INCLUDE_DIRECTORIES(printf_lib INTERFACE printf)
 
-ADD_EXECUTABLE(ghost_app)
+ADD_LIBRARY(ghost_app SHARED)
 SET_TARGET_PROPERTIES(ghost_app PROPERTIES OUTPUT_NAME "ghost")
 SET_TARGET_PROPERTIES(ghost_app PROPERTIES C_STANDARD 90)
 
@@ -57,11 +58,16 @@ ELSEIF (CMAKE_C_COMPILER_ID STREQUAL "GNU")
         "SHELL:-Wall"
         "SHELL:-Wpedantic"
         "SHELL:-Wextra"
-        "SHELL:-Werror"
+        #"SHELL:-Werror"
         "SHELL:-std=c90"
         # Sack protection causes seg faults.
         # It assumes %fs points to usable memory.
         "SHELL:-fno-stack-protector"
+        # No not expose symbols from the library unless
+        # explicitly marked `extern`.
+        # This avoids using the PLT and GOT in the loader,
+        # which arn't patched up by the OS.
+        "SHELL:-fvisibility=hidden"
 )
 ELSEIF (CMAKE_C_COMPILER_ID STREQUAL "Clang")
     TARGET_COMPILE_OPTIONS(ghost_app PRIVATE 

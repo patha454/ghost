@@ -11,6 +11,9 @@
 
 .text
 
+
+.func sys_write
+.hidden sys_write
 .global sys_write
 
 sys_write:
@@ -24,6 +27,10 @@ sys_write:
     ret                     # Return value should already be in %rax after
                             # syscall.       
 
+.endfunc
+
+.func sys_exit_group
+.hidden sys_exit_group
 .global sys_exit_group
 
 sys_exit_group:
@@ -34,3 +41,5 @@ sys_exit_group:
     mov %rbp, %rsp          # Should not return from syscall. Just in case...
     pop %rbp
     ret         
+
+.endfunc
