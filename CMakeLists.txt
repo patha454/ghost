@@ -22,6 +22,7 @@ IF (CMAKE_C_COMPILER_ID STREQUAL "GNU")
     # It assumes %fs points to usable memory.
     "SHELL:-fno-stack-protector"
     "SHELL:-fvisibility=hidden"
+    "SHELL:-fPIC"
     )
 ELSEIF (CMAKE_C_COMPILER_ID STREQUAL "Clang")
 TARGET_COMPILE_OPTIONS(printf_lib PRIVATE
@@ -62,16 +63,11 @@ ELSEIF (CMAKE_C_COMPILER_ID STREQUAL "GNU")
         "SHELL:-Wall"
         "SHELL:-Wpedantic"
         "SHELL:-Wextra"
-        #"SHELL:-Werror"
+        "SHELL:-Werror"
         "SHELL:-std=c90"
-        # Sack protection causes seg faults.
-        # It assumes %fs points to usable memory.
         "SHELL:-fno-stack-protector"
-        # No not expose symbols from the library unless
-        # explicitly marked `extern`.
-        # This avoids using the PLT and GOT in the loader,
-        # which arn't patched up by the OS.
         "SHELL:-fvisibility=hidden"
+        "SHELL:-fPIC"
 )
 ELSEIF (CMAKE_C_COMPILER_ID STREQUAL "Clang")
     TARGET_COMPILE_OPTIONS(ghost_app PRIVATE 
@@ -83,8 +79,6 @@ ELSEIF (CMAKE_C_COMPILER_ID STREQUAL "Clang")
         "SHELL:-Wno-unused-command-line-argument"
         "SHELL:-std=c90"
         "SHELL:-mstackrealign"
-        # Sack protection causes seg faults.
-        # It assumes %fs points to usable memory.
         "SHELL:-fno-stack-protector"
         "SHELL:-fPIC"
         "SHELL:-fvisibility=hidden"
