@@ -28,7 +28,11 @@ TARGET_COMPILE_OPTIONS(printf_lib PRIVATE
     # Sack protection causes seg faults.
     # It assumes %fs points to usable memory.
     "SHELL:-fno-stack-protector"
+    "SHELL:-fPIC"
+    "SHELL:-fvisibility=hidden"
     )
+ELSE ()
+    MESSAGE(FATAL_ERROR "ghost: printf_lib: Unknown C compiler.")
 ENDIF()
 
 TARGET_INCLUDE_DIRECTORIES(printf_lib INTERFACE printf)
@@ -82,6 +86,8 @@ ELSEIF (CMAKE_C_COMPILER_ID STREQUAL "Clang")
         # Sack protection causes seg faults.
         # It assumes %fs points to usable memory.
         "SHELL:-fno-stack-protector"
+        "SHELL:-fPIC"
+        "SHELL:-fvisibility=hidden"
     )
     TARGET_COMPILE_OPTIONS(printf_lib PRIVATE
         "SHELL:-mstackrealign"
@@ -96,7 +102,7 @@ target_link_options(ghost_app PRIVATE
     "LINKER:-e,__start"
     "-nostdlib"
     "-ffreestanding"
-    "-static"
+    "LINKER:-static"
 )
 
 ADD_SUBDIRECTORY(src)
