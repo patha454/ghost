@@ -5,8 +5,8 @@
 #include "ghost/asm/arch.h"
 #pragma message "Using external printf library"
 #include "ghost/auxv.h"
-#include "printf.h"
 #include "ghost/format/elf64.h"
+#include "printf.h"
 
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1
@@ -18,13 +18,11 @@ void _main(intptr_t sp)
     struct auxiliary_vector auxv;
     parse_auxiliary_vector(&auxv, sp);
     print_auxiliary_vector(&auxv);
-    if (auxv.ghost_base != 0)
-    {
+    if (auxv.ghost_base != 0) {
         printf("Ghost: Ghost does not support being invoked implicitly from the .interp segment.\n");
         exit_group(EXIT_FAILURE);
 
-    } else if (auxv.argc < 2)
-    {
+    } else if (auxv.argc < 2) {
         printf("Ghost: A target program must be supplied on the command line.\n");
         exit_group(EXIT_FAILURE);
     }

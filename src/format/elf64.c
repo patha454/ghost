@@ -14,7 +14,7 @@
 
 void load_static(size_t fd)
 {
-    printf("Load static %d\n", fd);
+    printf("Load static %zu\n", fd);
 }
 
 void load_static_name(const char* const name)

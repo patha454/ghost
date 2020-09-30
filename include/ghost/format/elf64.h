@@ -10,7 +10,7 @@
 #ifndef GHOST_FORMAT_ELF64_H_
 #define GHOST_FORMAT_ELF64_H_
 
-#include "ghost/types.h"
+#include <stddef.h>
 
 /**
  * Load a statically linked file into memory.
