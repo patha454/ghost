@@ -42,3 +42,38 @@ void exit_group(int status_code)
 {
     sys_exit_group(status_code);
 }
+
+/**
+ * `open` opens the file at the given path.
+ *
+ * @param path  The path to the file to be opened.
+ * @return      A file descriptor to the open file.
+ */
+int open(const char* pathname)
+{
+    const int O_RDONLY = 0;
+    return sys_open(pathname, O_RDONLY);
+}
+
+/**
+ * `close` closes a file indicated by a file descriptor.
+ *
+ * @param fd    The fild descriptor to close.
+ */
+void close(size_t fd)
+{
+    sys_close(fd);
+}
+
+/**
+ * `read` attempts to bytes from a file.
+ *
+ * @param fd    File descriptor to read from.
+ * @param buf   Buffer to copy bytes to.
+ * @param count Number of bytes to copy.
+ * @return      The number of bytes actually read, or a negative error code.
+ */
+ssize_t read(int fd, void* buf, size_t count)
+{
+    return sys_read(fd, buf, count);
+}

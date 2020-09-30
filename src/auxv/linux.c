@@ -107,6 +107,7 @@ void print_auxiliary_vector(const struct auxiliary_vector* const auxv)
     for (i = 0; i < auxv->envc; i++) {
         printf("envv[%zu]: %s\n", i, auxv->envv[i]);
     }
+    printf("Target FD: %d\n", auxv->exec_fd);
     printf("Target headers: 0x%lx\n", auxv->program_headers);
     printf("Target header size: 0d%zu\n", auxv->program_header_size);
     printf("Target header count: 0d%zu\n", auxv->program_header_num);

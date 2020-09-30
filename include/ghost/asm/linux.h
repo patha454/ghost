@@ -43,4 +43,30 @@ ssize_t sys_write(unsigned int fd, const char* buf, size_t count);
  */
 int sys_exit_group(int error_code);
 
+/**
+ * Linux `open` system call.
+ *
+ * @param path  The path to the file to be opened.
+ * @param flags Flags about the file opening.
+ * @return      A file descriptor to the open file.
+ */
+size_t sys_open(const char* pathname, int flags);
+
+/**
+ * Linux `closes` system call.
+ *
+ * @param fd    The fild descriptor to close.
+ */
+void sys_close(size_t fd);
+
+/**
+ * Linux `read` system call.
+ *
+ * @param fd    File descriptor to read from.
+ * @param buf   Buffer to copy bytes to.
+ * @param count Number of bytes to copy.
+ * @return      The number of bytes actually read, or a negative error code.
+ */
+ssize_t sys_read(int fd, void* buf, size_t count);
+
 #endif

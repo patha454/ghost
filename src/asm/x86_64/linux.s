@@ -36,4 +36,40 @@ sys_exit_group:
     syscall                 # exit_code should already be on %rdi.
     mov %rbp, %rsp          # Should not return from syscall. Just in case...
     pop %rbp
-    ret         
+    ret
+
+.hidden sys_open
+.global sys_open
+
+sys_open:
+    push %rbp
+    mov %rsp, %rbp
+    mov $2, %rax            # Syscall #2 (open)
+    syscall
+    mov %rbp, %rsp
+    pop %rbp
+    ret
+
+.hidden sys_close
+.global sys_close
+
+sys_close:
+    push %rbp
+    mov %rsp, %rbp
+    mov $3, %rax            # Syscall #3 (close)
+    syscall
+    mov %rbp, %rsp
+    pop %rbp
+    ret
+
+.hidden sys_read
+.global sys_read
+
+sys_read:
+    push %rbp
+    mov %rsp, %rbp
+    mov $0, %rax            # Syscall #0 (read)
+    syscall
+    mov %rbp, %rsp
+    pop %rbp
+    ret
