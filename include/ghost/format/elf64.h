@@ -16,14 +16,16 @@
  * Load a statically linked file into memory.
  *
  * @param fd    File descriptor for the target binary.
+ * @return      0 on failure, 1 on success.
  */
-void load_static(size_t fd);
+int load_static(size_t fd);
 
 /**
  * Load a statically linked file into memory.
  *
- * @param name    File name of the target binary.
+ * @param name  File name of the target binary.
+ * @return      0 oon failure, 1 on success.
  */
-void load_static_name(const char* name);
+int load_static_name(const char* name);
 
 #endif
