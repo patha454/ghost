@@ -26,8 +26,7 @@ void _main(intptr_t sp)
         printf("Ghost: A target program must be supplied on the command line.\n");
         exit_group(EXIT_FAILURE);
     }
-    if (!load_static_name(auxv.argv[1]))
-    {
+    if (!load_static_name(auxv.argv[1])) {
         printf("Ghost: Error: ELF static load failed\n");
         exit_group(EXIT_FAILURE);
     }
