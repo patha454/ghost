@@ -65,4 +65,11 @@ void close(size_t fd);
  */
 ssize_t read(int fd, void* buf, size_t count);
 
+/**
+ * `seek` moves the file pointer to a specified index from the start of a file.
+ *
+ * @param fd        File descriptor to seek in.
+ * @param offset    Offset to seek to.
+ */
+void seek(int fd, unsigned int offset);
 #endif

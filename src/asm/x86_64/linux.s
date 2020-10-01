@@ -73,3 +73,15 @@ sys_read:
     mov %rbp, %rsp
     pop %rbp
     ret
+
+.hidden sys_lseek
+.global sys_lseek
+
+sys_lseek:
+    push %rbp
+    mov %rsp, %rbp
+    mov $8, %rax            # Syscall #8 (lseek)
+    syscall
+    mov %rbp, %rsp
+    pop %rbp
+    ret

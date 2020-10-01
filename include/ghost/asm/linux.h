@@ -69,4 +69,14 @@ void sys_close(size_t fd);
  */
 ssize_t sys_read(int fd, void* buf, size_t count);
 
+/**
+ * Linux `lseek` system call.
+ *
+ * @param fd        File descriptor to seek in,
+ * @param offset    Offset to seek to
+ * @param count     Seek relative to where.
+ * @return      The number of bytes actually read, or a negative error code.
+ */
+ssize_t sys_lseek(int fd, unsigned int offset, int whence);
+
 #endif
