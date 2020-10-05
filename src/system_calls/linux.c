@@ -51,8 +51,10 @@ void exit_group(int status_code)
  */
 int open(const char* pathname)
 {
-    const int O_RDONLY = 0;
-    return sys_open(pathname, O_RDONLY);
+    const int O_RDRW = 0x2;
+    /* mmaping binaries with write segments requires the original file to
+     * be opened in write mode. */
+    return sys_open(pathname, O_RDRW);
 }
 
 /**
