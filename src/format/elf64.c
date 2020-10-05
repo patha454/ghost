@@ -60,24 +60,22 @@ int load_segments(const Elf64_Ehdr* const elf_header, size_t fd)
 {
     size_t segment_n = 0;
     Elf64_Phdr p_header;
-    if (elf_header->e_phnum == 0)
-    {
+    if (elf_header->e_phnum == 0) {
         printf("Ghost: Error: No program headers.\n");
         return 0;
     }
-    while (segment_n < elf_header->e_phnum)
-    {
+    while (segment_n < elf_header->e_phnum) {
         seek(fd, elf_header->e_phoff + segment_n * sizeof(Elf64_Phdr));
         read(fd, &p_header, sizeof(p_header));
         printf("\nHeader type: %x\n", p_header.p_type);
         printf("Header flags: 0x%x\n", p_header.p_flags);
-        printf("Header offset: %d\n", p_header.p_offset);
-        printf("Header vaddr: 0x%x\n", p_header.p_offset);
-        printf("Header vaddr 0x%x\n", p_header.p_vaddr);
-        printf("Header paddr: 0x%x\n", p_header.p_offset);
-        printf("Header memsize: 0x%d\n", p_header.p_memsz);
-        printf("Header filesize: 0x%x\n", p_header.p_filesz);
-        printf("Header align: 0x%x\n", p_header.p_align);
+        printf("Header offset: %lu\n", p_header.p_offset);
+        printf("Header vaddr: 0x%lx\n", p_header.p_offset);
+        printf("Header vaddr 0x%lx\n", p_header.p_vaddr);
+        printf("Header paddr: 0x%lx\n", p_header.p_offset);
+        printf("Header memsize: 0x%lu\n", p_header.p_memsz);
+        printf("Header filesize: 0x%lx\n", p_header.p_filesz);
+        printf("Header align: 0x%lx\n", p_header.p_align);
         segment_n++;
     }
     seek(fd, elf_header->e_phoff);
@@ -97,8 +95,7 @@ int load_static(size_t fd)
         printf("Ghost: Error: ELF header invalid.\n");
         return 0;
     }
-    if (!load_segments(&elf_header, fd))
-    {
+    if (!load_segments(&elf_header, fd)) {
         printf("Ghost: Error: Could not load program segments\n");
         return 0;
     }
