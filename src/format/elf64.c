@@ -70,7 +70,6 @@ int load_segments(const Elf64_Ehdr* const elf_header, size_t fd)
         printf("\nHeader type: %x\n", p_header.p_type);
         printf("Header flags: 0x%x\n", p_header.p_flags);
         printf("Header offset: %lu\n", p_header.p_offset);
-        printf("Header vaddr: 0x%lx\n", p_header.p_offset);
         printf("Header vaddr 0x%lx\n", p_header.p_vaddr);
         printf("Header paddr: 0x%lx\n", p_header.p_offset);
         printf("Header memsize: 0x%lu\n", p_header.p_memsz);
