@@ -14,6 +14,8 @@
 #pragma message "Using external libelf-dev headers"
 #include "elf.h"
 
+#define PT_GNU_PROPERTY 0x6474e553
+
 /**
  * Check an ELF header corosponds to a valid ELF64 X64 static executable.
  *
@@ -75,11 +77,23 @@ int load_segment(const Elf64_Phdr* const segment, size_t fd)
     case PT_NOTE:
         printf("PT_NOTE segment. Skiping...\n");
         break;
+    case PT_SHLIB:
+        printf("PT_SHLIB segment. Skiping...\n");
+        break;
     case PT_PHDR:
         printf("PT_PHDR segment. Skiping...\n");
         break;
+    case PT_TLS:
+        printf("PT_TLS segment. TODO.\n");
+        break;
     case PT_GNU_STACK:
         printf("PT_GNU_STACK segment. Skiping...\n");
+        break;
+    case PT_GNU_PROPERTY:
+        printf("PT_GNU_PROPERTY. Skiping...\n");
+        break;
+    case PT_GNU_RELRO:
+        printf("PT_GNU_RELRO. TODO.\n");
         break;
     default:
         printf("Ghost: Error: Unknown segment type.\n");
