@@ -50,6 +50,53 @@ int validate_static_elf64_exec(const Elf64_Ehdr* const elf_header)
 }
 
 /**
+ * Attempt to load an ELF64 segment.
+ *
+ * @param segment   Segment header to attempt to load.
+ * @param fd        File descriptor to the binary containing the segment.
+ * @return          0 on failure, 1 on success.
+ */
+int load_segment(const Elf64_Phdr* const segment, size_t fd)
+{
+    printf("%zu\n", fd);
+    switch (segment->p_type) {
+    case PT_NULL:
+        printf("PT_NULL segment. Skiping...\n");
+        break;
+    case PT_LOAD:
+        printf("PT_LOAD segment. TODO.\n");
+        break;
+    case PT_DYNAMIC:
+        printf("Ghost: Error: PT_DYNAMIC segment not supported.\n");
+        return 0;
+    case PT_INTERP:
+        printf("PT_INTERP segment. Skiping...\n");
+        break;
+    case PT_NOTE:
+        printf("PT_NOTE segment. Skiping...\n");
+        break;
+    case PT_PHDR:
+        printf("PT_PHDR segment. Skiping...\n");
+        break;
+    case PT_GNU_STACK:
+        printf("PT_GNU_STACK segment. Skiping...\n");
+        break;
+    default:
+        printf("Ghost: Error: Unknown segment type.\n");
+        printf("Header type: %x\n", segment->p_type);
+        printf("Header flags: 0x%x\n", segment->p_flags);
+        printf("Header offset: %lu\n", segment->p_offset);
+        printf("Header vaddr 0x%lx\n", segment->p_vaddr);
+        printf("Header paddr: 0x%lx\n", segment->p_offset);
+        printf("Header memsize: 0x%lu\n", segment->p_memsz);
+        printf("Header filesize: 0x%lx\n", segment->p_filesz);
+        printf("Header align: 0x%lx\n", segment->p_align);
+        return 0;
+    }
+    return 1;
+}
+
+/**
  * Attemt to load ELF64 program segments into memory.
  *
  * @param elf_heaer     Elf header to refer to.
@@ -67,14 +114,10 @@ int load_segments(const Elf64_Ehdr* const elf_header, size_t fd)
     while (segment_n < elf_header->e_phnum) {
         seek(fd, elf_header->e_phoff + segment_n * sizeof(Elf64_Phdr));
         read(fd, &p_header, sizeof(p_header));
-        printf("\nHeader type: %x\n", p_header.p_type);
-        printf("Header flags: 0x%x\n", p_header.p_flags);
-        printf("Header offset: %lu\n", p_header.p_offset);
-        printf("Header vaddr 0x%lx\n", p_header.p_vaddr);
-        printf("Header paddr: 0x%lx\n", p_header.p_offset);
-        printf("Header memsize: 0x%lu\n", p_header.p_memsz);
-        printf("Header filesize: 0x%lx\n", p_header.p_filesz);
-        printf("Header align: 0x%lx\n", p_header.p_align);
+        if (!load_segment(&p_header, fd)) {
+            printf("Ghost: Error: Segment loading failed.\n");
+            return 0;
+        }
         segment_n++;
     }
     seek(fd, elf_header->e_phoff);
