@@ -79,4 +79,22 @@ ssize_t sys_read(int fd, void* buf, size_t count);
  */
 ssize_t sys_lseek(int fd, unsigned int offset, int whence);
 
+/**
+ * Linux `mmap` system call.
+ *
+ * @param addr      Start address of the mapping in memory.
+ * @param length    Length of the mapping in memory.
+ * @param prot      Protection mode flags.
+ * @param flags     Indicates the visiblity of the mapping.
+ * @param fd        File descriptor for a file backed mapping.
+ * @param offset    Offset of the file backing contents.
+ * @return          The address of the new mapping.
+ */
+void* sys_mmap(void* addr,
+    size_t length,
+    int prot,
+    int flags,
+    int fd,
+    long int offset);
+
 #endif

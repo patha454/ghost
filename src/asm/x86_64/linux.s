@@ -85,3 +85,12 @@ sys_lseek:
     mov %rbp, %rsp
     pop %rbp
     ret
+
+sys_mmap:
+    push %rbp
+    mov %rsp, %rbp
+    mov $9, %rax            # Syscall #9 (mmap)
+    syscall
+    mov %rbp, %rsp
+    pop %rbp
+    ret

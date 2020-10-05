@@ -72,4 +72,30 @@ ssize_t read(int fd, void* buf, size_t count);
  * @param offset    Offset to seek to.
  */
 void seek(int fd, unsigned int offset);
+
+/* mmap related constants. */
+#define PROT_READ 0x1
+#define PROT_WRITE 0x2
+#define PORT_EXEC 0x4
+#define MAP_PRIVATE 0x2
+
+/**
+ * `mmap` maps memory segments.
+ * 
+ * @note The semantics of mmap match the Linux mmap implimentation.
+ * @param addr      Start address of the mapping in memory.
+ * @param length    Length of the mapping in memory.
+ * @param prot      Protection mode flags.
+ * @param flags     Indicates the visiblity of the mapping.
+ * @param fd        File descriptor for a file backed mapping.
+ * @param offset    Offset of the file backing contents.
+ * @return          The address of the new mapping.
+ */
+void* mmap(void* addr,
+    size_t length,
+    int prot,
+    int flags,
+    int fd,
+    long int offset);
+
 #endif
