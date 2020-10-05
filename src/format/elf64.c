@@ -52,6 +52,38 @@ int validate_static_elf64_exec(const Elf64_Ehdr* const elf_header)
 }
 
 /**
+ * Print the contents of a segment header to the standard out.
+ *
+ * @param segment   Segment header to print.
+ */
+void print_segment_info(const Elf64_Phdr* const segment)
+{
+    printf("Header type: %x\n", segment->p_type);
+    printf("Header flags: 0x%x\n", segment->p_flags);
+    printf("Header offset: %lu\n", segment->p_offset);
+    printf("Header vaddr 0x%lx\n", segment->p_vaddr);
+    printf("Header paddr: 0x%lx\n", segment->p_offset);
+    printf("Header memsize: 0x%lu\n", segment->p_memsz);
+    printf("Header filesize: 0x%lx\n", segment->p_filesz);
+    printf("Header align: 0x%lx\n", segment->p_align);
+}
+
+/**
+ * Attempt to map a PT_LOAD segment into memory.
+ * 
+ * @param segment   Segment header to load.
+ * @param fd        Fide descriptor to the binary containing the segment.
+ * @return          0 on failure, 1 on success.
+ */
+int load_pt_load_segment(const Elf64_Phdr* const segment, size_t fd)
+{
+    printf("%zu\n", fd);
+    printf("Ghost: Error: PT_LOAD segment. TODO.\n");
+    print_segment_info(segment);
+    return 0;
+}
+
+/**
  * Attempt to load an ELF64 segment.
  *
  * @param segment   Segment header to attempt to load.
@@ -60,13 +92,14 @@ int validate_static_elf64_exec(const Elf64_Ehdr* const elf_header)
  */
 int load_segment(const Elf64_Phdr* const segment, size_t fd)
 {
-    printf("%zu\n", fd);
     switch (segment->p_type) {
     case PT_NULL:
         printf("PT_NULL segment. Skiping...\n");
         break;
     case PT_LOAD:
-        printf("PT_LOAD segment. TODO.\n");
+        if (!load_pt_load_segment(segment, fd)) {
+            return 0;
+        }
         break;
     case PT_DYNAMIC:
         printf("Ghost: Error: PT_DYNAMIC segment not supported.\n");
@@ -96,15 +129,7 @@ int load_segment(const Elf64_Phdr* const segment, size_t fd)
         printf("PT_GNU_RELRO. TODO.\n");
         break;
     default:
-        printf("Ghost: Error: Unknown segment type.\n");
-        printf("Header type: %x\n", segment->p_type);
-        printf("Header flags: 0x%x\n", segment->p_flags);
-        printf("Header offset: %lu\n", segment->p_offset);
-        printf("Header vaddr 0x%lx\n", segment->p_vaddr);
-        printf("Header paddr: 0x%lx\n", segment->p_offset);
-        printf("Header memsize: 0x%lu\n", segment->p_memsz);
-        printf("Header filesize: 0x%lx\n", segment->p_filesz);
-        printf("Header align: 0x%lx\n", segment->p_align);
+        print_segment_info(segment);
         return 0;
     }
     return 1;
