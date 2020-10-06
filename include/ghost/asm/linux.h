@@ -91,10 +91,10 @@ ssize_t sys_lseek(int fd, unsigned int offset, int whence);
  * @return          The address of the new mapping.
  */
 void* sys_mmap(void* addr,
-    size_t length,
-    int prot,
-    int flags,
-    int fd,
-    long int offset);
+    unsigned long length,
+    unsigned long prot,
+    unsigned long flags,
+    unsigned long fd,
+    unsigned long offset);
 
 #endif

@@ -105,11 +105,11 @@ void seek(int fd, unsigned int offset)
  * @return          The address of the new mapping.
  */
 void* mmap(void* addr,
-    size_t length,
-    int prot,
-    int flags,
-    int fd,
-    long int offset)
+    unsigned long length,
+    unsigned long prot,
+    unsigned long flags,
+    unsigned long fd,
+    unsigned long offset)
 {
     return sys_mmap(addr, length, prot, flags, fd, offset);
 }
