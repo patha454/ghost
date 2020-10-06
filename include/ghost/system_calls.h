@@ -76,8 +76,10 @@ void seek(int fd, unsigned int offset);
 /* mmap related constants. */
 #define PROT_READ 0x1
 #define PROT_WRITE 0x2
-#define PORT_EXEC 0x4
+#define PROT_EXEC 0x4
 #define MAP_PRIVATE 0x2
+#define MAP_ANON 0x20
+#define MAP_FIXED 0x10
 
 /**
  * `mmap` maps memory segments.

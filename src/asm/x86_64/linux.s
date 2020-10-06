@@ -86,6 +86,9 @@ sys_lseek:
     pop %rbp
     ret
 
+.hidden sys_mmap
+.global sys_mmap
+
 sys_mmap:
     push %rbp
     mov %rsp, %rbp

@@ -91,3 +91,25 @@ void seek(int fd, unsigned int offset)
     const int SEEK_SET = 0;
     sys_lseek(fd, offset, SEEK_SET);
 }
+
+/**
+ * `mmap` maps memory segments.
+ * 
+ * @note The semantics of mmap match the Linux mmap implimentation.
+ * @param addr      Start address of the mapping in memory.
+ * @param length    Length of the mapping in memory.
+ * @param prot      Protection mode flags.
+ * @param flags     Indicates the visiblity of the mapping.
+ * @param fd        File descriptor for a file backed mapping.
+ * @param offset    Offset of the file backing contents.
+ * @return          The address of the new mapping.
+ */
+void* mmap(void* addr,
+    size_t length,
+    int prot,
+    int flags,
+    int fd,
+    long int offset)
+{
+    return sys_mmap(addr, length, prot, flags, fd, offset);
+}
