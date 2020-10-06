@@ -94,7 +94,7 @@ int load_pt_load_segment(const Elf64_Phdr* const segment, size_t fd)
         fd,
         segment->p_offset
     );*/
-    load_address = mmap(NULL,
+    load_address = mmap((void*) segment->p_vaddr,
         4096,
         PROT_READ | PROT_WRITE,
         MAP_PRIVATE | MAP_ANON,

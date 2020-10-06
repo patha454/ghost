@@ -92,6 +92,7 @@ sys_lseek:
 sys_mmap:
     push %rbp
     mov %rsp, %rbp
+    mov %rcx, %r10          # C ABI dosn't quite match the Linux ABI? Patch this up.
     mov $9, %rax            # Syscall #9 (mmap)
     syscall
     mov %rbp, %rsp
