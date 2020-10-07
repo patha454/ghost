@@ -20,6 +20,9 @@
 
 #define STDOUT 1
 
+/* This shouldn't be here, but this whole program is a quick hack, so... */
+#define PAGE_SIZE 4096
+
 /**
  * `write` writes upto `count` bytes from the buffer starting at `buf` into
  * the file refered to by the file descriptor `fd`.

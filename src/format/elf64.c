@@ -14,6 +14,7 @@
 #pragma message "Using external libelf-dev headers"
 #include "elf.h"
 #include <stdint.h>
+#include <string.h>
 
 #define PT_GNU_PROPERTY 0x6474e553
 
@@ -80,6 +81,8 @@ int load_pt_load_segment(const Elf64_Phdr* const segment, size_t fd)
 {
     void* load_address = 0;
     int protection = 0;
+    /*intptr_t map_base = 0; */
+    /*size_t map_size; */
     printf("%zu\n", fd);
     printf("Ghost: Error: PT_LOAD segment. TODO.\n");
     print_segment_info(segment);
@@ -94,14 +97,15 @@ int load_pt_load_segment(const Elf64_Phdr* const segment, size_t fd)
         fd,
         segment->p_offset
     );*/
-    load_address = mmap((void*) segment->p_vaddr,
+    /*if*/
+    load_address = mmap(load_address,
         4096,
         PROT_READ | PROT_WRITE,
         MAP_PRIVATE | MAP_ANON,
         0,
         0
     );
-    if ((intptr_t) load_address != (intptr_t) segment->p_vaddr) {
+    if ((Elf64_Addr) load_address != segment->p_vaddr) {
         printf("Ghost: Error: Could not map in segment. mmap error %d.\n", load_address);
         return 0;
     }
